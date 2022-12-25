@@ -32,7 +32,7 @@ jobs:
           server_port: 587
           # user credentials
           username: avisihag9919@gmail.com
-          password: xsmtpsib-f321347e5d99a7400f70a84de688fb3a75c1c2793e1ece45a17fca56f8259763-5HarPmhMpzIdtC6E
+          password: "xsmtpsib-f321347e5d99a7400f70a84de688fb3a75c1c2793e1ece45a17fca56f8259763-5HarPmhMpzIdtC6E"
           # email subject
           subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
           # email body as text
