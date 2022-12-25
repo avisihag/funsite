@@ -1,0 +1,44 @@
+name: funsite issues alerts
+
+on:
+  issues:
+    types:
+      - opened
+      - reopened
+
+env:
+  REPO_NAME: funsite
+
+jobs:
+  send-slack-updates:
+    runs-on: ubuntu-latest
+    steps:
+#      - name: Post to a Slack channel
+#        id: slack
+#        uses: slackapi/slack-github-action@v1.23.0
+#        with:
+#          channel-id: 'CHANNEL_ID,ANOTHER_CHANNEL_ID'
+#          # For posting a simple plain text message
+#          slack-message: "GitHub issue raised: ${{ github.event.issue.url }} by ${{ github.event.issue.user }} at ${{ github.event.issue.created_at }} ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+#        env:
+#          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+      - name: Send mail
+        if: always()
+        uses: dawidd6/action-send-mail@v2
+        with:
+          # mail server settings
+          server_address: smtp-relay.sendinblue.com
+          server_port: 587
+          # user credentials
+          username: avisihag9919@gmail.com
+          password: xsmtpsib-f321347e5d99a7400f70a84de688fb3a75c1c2793e1ece45a17fca56f8259763-5HarPmhMpzIdtC6E
+          # email subject
+          subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
+          # email body as text
+          body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}. GitHub issue raised: ${{ github.event.issue.url }} by ${{ github.event.issue.user }} at ${{ github.event.issue.created_at }} ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}
+          # comma-separated string, send email to
+          to: avisihag9919@gmail.com
+          # from email name
+          from: CMS Issues Action Bot
+
